@@ -1,8 +1,8 @@
 let inputDirection = {x: 0, y: 0}
 let lastInputDirection = {x: 0, y: 0}
 
-window.addEventListener('keydown', e => {
-    switch (e.key) {
+function handleInput(key) {
+    switch (key) {
         case 'ArrowUp':
             if (lastInputDirection.y !== 0) break
             inputDirection = {x: 0, y: -1}
@@ -20,7 +20,27 @@ window.addEventListener('keydown', e => {
             inputDirection = {x:1, y: 0}
             break
     }
-})
+}
+
+window.addEventListener('keydown', e => {
+    handleInput(e.key);
+});
+
+document.getElementById('up').addEventListener('click', () => {
+    handleInput('ArrowUp');
+});
+
+document.getElementById('down').addEventListener('click', () => {
+    handleInput('ArrowDown');
+});
+
+document.getElementById('left').addEventListener('click', () => {
+    handleInput('ArrowLeft');
+});
+
+document.getElementById('right').addEventListener('click', () => {
+    handleInput('ArrowRight');
+});
 
 export function getInputDirection(){
     lastInputDirection = inputDirection
